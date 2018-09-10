@@ -1,0 +1,11 @@
+{
+  "name": "apollo-default-example",
+  "version": "1.0.0",
+  "description": "Default example by Apollo",
+  "main": "index.js",
+  "author": "Vincenzo Russo <v@artetecha.com> (https://www.artetecha.com)",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  }
+}

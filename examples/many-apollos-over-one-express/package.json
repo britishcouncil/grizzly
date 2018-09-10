@@ -1,0 +1,11 @@
+{
+  "name": "many-apollos-over-one-express",
+  "version": "1.0.0",
+  "description": "A twist on the default example by Apollo, to show multiple graphql server over one Express app.",
+  "main": "index.js",
+  "author": "Vincenzo Russo <v@artetecha.com> (https://www.artetecha.com)",
+  "license": "MIT",
+  "scripts": {
+    "start": "node ."
+  }
+}
