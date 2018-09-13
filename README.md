@@ -14,8 +14,20 @@ Slightly opinionated GraphQL server solution built on [Apollo Server 2.0](https:
 
 ## Install
 
+(Publication on `npmjs.com` pending)
+
 ```sh
-yarn add graphql-panda # npm install graphql-panda
+$ yarn add graphql-panda
+# or
+# $ npm install graphql-panda
+```
+
+Temporary installation from GitHub:
+
+```sh
+$ yarn add https://github.com/britishcouncil/graphql-panda.git 
+# or
+# $ npm install https://github.com/britishcouncil/graphql-panda.git
 ```
 
 ## Usage
