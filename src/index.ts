@@ -1,2 +1,2 @@
-export { PandaExpress } from "./panda-express";
-export { PandaGraphQL, PandaGraphQLConfig } from "./panda-graphql";
+export { GrizzlyExpress } from "./grizzly-express";
+export { GrizzlyGraphQL, GrizzlyGraphQLConfig } from "./grizzly-graphql";

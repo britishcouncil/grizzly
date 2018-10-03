@@ -1,6 +1,6 @@
-<p align="center"><img src="http://www.iconarchive.com/download/i107368/google/noto-emoji-animals-nature/22261-panda-face.ico" width="80" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/britishcouncil/grizzly/master/.rsrc/bear.svg" width="80" /></p>
 
-# graphql-panda
+# @britishcouncil/grizzly
 
 Slightly opinionated GraphQL server solution built on [Apollo Server 2.0](https://github.com/apollographql/apollo-server) and [Express](https://github.com/expressjs/express).
 
@@ -15,35 +15,35 @@ Slightly opinionated GraphQL server solution built on [Apollo Server 2.0](https:
 ## Install
 
 ```sh
-yarn add graphql-panda # npm install graphql-panda
+yarn add @britishcouncil/grizzly # npm install @britishcouncil/grizzly
 ```
 
 ## Usage
 
 ### Quickstart
 
-> To get started with `graphql-panda`, follow the instructions in the READMEs of the [examples](./examples).
+> To get started with `@britishcouncil/grizzly`, follow the instructions in the READMEs of the [examples](./examples).
 
 ### API
 
-#### `PandaExpress`
+#### `GrizzlyExpress`
 
-##### `constructor(props: PandaExpressProps): PandaExpress`
+##### `constructor(props: GrizzlyExpressProps): GrizzlyExpress`
 
 The `props` argument accepts the following fields:
 
 | **Key**              | **Type**                     | **Default** | **Notes**                                                                                                                                                                                  |
 | -------------------- | ---------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `graphqlServices`    | Array of `PandaGraphQL`      | `null`      | See `PandaGraphQL` documentation below for more details about this type                                                                                                                    |
+| `graphqlServices`    | Array of `GrizzlyGraphQL`    | `null`      | See `GrizzlyGraphQL` documentation below for more details about this type                                                                                                                  |
 | `sessionStore`       | `Store`                      | `null`      | An instance of a session storage for Express server.                                                                                                                                       |
 | `passport`           | `Authenticator`              | `null`      | An instance of a `passport` authenticator.                                                                                                                                                 |
 | `expressMiddlewares` | Array of `ExpressMiddleware` | `null`      | Each `ExpressMiddleware` can have a `path` (optional) and a `function`, e.g. `{ path: "/hello-world", function: () => "Hello world!" }` or `{ function: () => console.log("Everything") }` |
-| `settings`           | `PandaExpressSettings`       | See below   |                                                                                                                                                                                            |
+| `settings`           | `GrizzlyExpressSettings`     | See below   |                                                                                                                                                                                            |
 
-Default PandaExpress settings:
+Default GrizzlyExpress settings:
 
 ```js
-  protected settings: PandaExpressSettings = {
+  protected settings: GrizzlyExpressSettings = {
     express: {
       port: process.env.PORT || 5000,
       cors: {
@@ -58,9 +58,9 @@ Default PandaExpress settings:
   };
 ```
 
-#### `PandaGraphQL`
+#### `GrizzlyGraphQL`
 
-##### `constructor(options: PandaGraphQLConfig): PandaGraphQL`
+##### `constructor(options: GrizzlyGraphQLConfig): GrizzlyGraphQL`
 
 The `options` argument accepts all the parameters as the `options` argument by [Apollo Server 2.0](https://www.apollographql.com/docs/apollo-server/v2/api/apollo-server.html#Parameters), but it also adds:
 
@@ -91,9 +91,9 @@ interface ExpressOptions {
 }
 
 /**
- * Panda Express Settings.
+ * Grizzly Express Settings.
  */
-export interface PandaExpressSettings {
+export interface GrizzlyExpressSettings {
   express?: ExpressOptions;
 }
 
@@ -106,13 +106,13 @@ export interface ExpressMiddleware {
 }
 
 /**
- * Panda Express initialisation options.
+ * Grizzly Express initialisation options.
  */
-export interface PandaExpressProps {
-  graphqlServices: Array<PandaGraphQL>;
+export interface GrizzlyExpressProps {
+  graphqlServices: Array<GrizzlyGraphQL>;
   sessionStore?: Store;
   passport?: Authenticator;
   expressMiddlewares?: Array<ExpressMiddleware>;
-  settings?: PandaExpressSettings;
+  settings?: GrizzlyExpressSettings;
 }
 ```

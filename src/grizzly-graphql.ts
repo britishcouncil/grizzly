@@ -7,7 +7,7 @@ import { Config as ApolloConfig } from "apollo-server-core";
 /**
  * Extends ApolloServer Config.
  */
-export interface PandaGraphQLConfig extends ApolloConfig {
+export interface GrizzlyGraphQLConfig extends ApolloConfig {
   schemaFile?: string;
   endpoint?: string;
   middlewares?: Array<any>;
@@ -21,10 +21,10 @@ export interface PandaGraphQLConfig extends ApolloConfig {
  *  - to load the schema from an SDL file
  *  - to apply graphql-middleware(s) to the schema
  */
-export class PandaGraphQL extends ApolloServer {
+export class GrizzlyGraphQL extends ApolloServer {
   public endpoint: string;
 
-  constructor(options: PandaGraphQLConfig) {
+  constructor(options: GrizzlyGraphQLConfig) {
     let path = require("path");
     let fs = require("fs");
 

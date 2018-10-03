@@ -1,4 +1,4 @@
-const { PandaGraphQL, PandaExpress } = require("../../dist");
+const { GrizzlyGraphQL, GrizzlyExpress } = require("../../dist");
 const { gql } = require("apollo-server-express");
 
 // This is a (sample) collection of books we'll be able to query
@@ -7,11 +7,11 @@ const { gql } = require("apollo-server-express");
 const books = [
   {
     title:
-      "The Way of the Panda: The Curious History of China's Political Animal",
+      "The Way of the Grizzly: The Curious History of China's Political Animal",
     author: "Henry Nicholls"
   },
   {
-    title: "American Panda",
+    title: "American Grizzly",
     author: "Gloria Chao"
   }
 ];
@@ -43,7 +43,7 @@ const bookResolvers = {
 };
 
 // Create a GraphQL service for the Books service.
-const bookServer = new PandaGraphQL({
+const bookServer = new GrizzlyGraphQL({
   typeDefs: booksTypeDefs,
   resolvers: bookResolvers,
   endpoint: "/books"
@@ -53,11 +53,11 @@ const bookServer = new PandaGraphQL({
 
 const films = [
   {
-    title: "Kung Fu Panda",
+    title: "Kung Fu Grizzly",
     director: ["Mark Osborne", "John Stevenson"]
   },
   {
-    title: "Pandas",
+    title: "Grizzlys",
     director: ["David Douglas", "Drew Fellman"]
   }
 ];
@@ -79,14 +79,14 @@ const filmResolvers = {
   }
 };
 
-const filmServer = new PandaGraphQL({
+const filmServer = new GrizzlyGraphQL({
   typeDefs: filmsTypeDefs,
   resolvers: filmResolvers,
   endpoint: "/films"
 });
 
 // Create a new Express app serving both GraphQL services.
-const app = new PandaExpress({ graphqlServices: [bookServer, filmServer] });
+const app = new GrizzlyExpress({ graphqlServices: [bookServer, filmServer] });
 
 // Launch the server.
 app.start();

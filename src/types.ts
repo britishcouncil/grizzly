@@ -2,7 +2,7 @@ import { CookieOptions } from "express-serve-static-core";
 import { CorsOptions } from "cors";
 import { Store } from "express-session";
 import { Authenticator } from "passport";
-import { PandaGraphQL } from "./panda-graphql";
+import { GrizzlyGraphQL } from "./grizzly-graphql";
 
 /**
  * Session options.
@@ -22,9 +22,9 @@ interface ExpressOptions {
 }
 
 /**
- * Panda Express Settings.
+ * Grizzly Express Settings.
  */
-export interface PandaExpressSettings {
+export interface GrizzlyExpressSettings {
   express?: ExpressOptions;
 }
 
@@ -37,12 +37,12 @@ export interface ExpressMiddleware {
 }
 
 /**
- * Panda Express initialisation options.
+ * Grizzly Express initialisation options.
  */
-export interface PandaExpressProps {
-  graphqlServices: Array<PandaGraphQL>;
+export interface GrizzlyExpressProps {
+  graphqlServices: Array<GrizzlyGraphQL>;
   sessionStore?: Store;
   passport?: Authenticator;
   expressMiddlewares?: Array<ExpressMiddleware>;
-  settings?: PandaExpressSettings;
+  settings?: GrizzlyExpressSettings;
 }

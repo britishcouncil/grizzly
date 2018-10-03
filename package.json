@@ -1,5 +1,5 @@
 {
-  "name": "graphql-panda",
+  "name": "@britishcouncil/grizzly",
   "version": "0.0.0-semantic-release",
   "description": "Slightly opinionated GraphQL server solution built on Apollo Server 2.0 and Express.",
   "main": "dist/index.js",
@@ -7,7 +7,7 @@
   "files": [
     "dist"
   ],
-  "repository": "git@github.com:britishcouncil/graphql-panda.git",
+  "repository": "git@github.com:britishcouncil/grizzly.git",
   "author": "Vincenzo Russo",
   "license": "MIT",
   "private": false,
@@ -15,11 +15,7 @@
     "prepublish": "yarn build",
     "build": "rm -rf dist && tsc -d",
     "lint": "tslint --project tsconfig.json {src,test}/**/*.ts && prettier-check --ignore-path .gitignore {src,.}/{*.ts,*.js}",
-    "format": "prettier --write --ignore-path .gitignore {src,.}/{*.ts,*.js}",
-    "test": "yarn lint && yarn build && ava",
-    "watch:tsc": "tsc --watch",
-    "watch:ava": "ava --watch",
-    "watch": "yarn build && npm-run-all --parallel watch:*"
+    "format": "prettier --write --ignore-path .gitignore {src,.}/{*.ts,*.js}"
   },
   "release": {
     "branch": "master"

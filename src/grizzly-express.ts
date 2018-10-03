@@ -1,14 +1,14 @@
 import * as express from "express";
 import * as session from "express-session";
-import { PandaExpressProps, PandaExpressSettings } from "./types";
+import { GrizzlyExpressProps, GrizzlyExpressSettings } from "./types";
 
 /**
  * Wrapper around Express to build a "many Apollo Servers over One Express app" model.
  */
-export class PandaExpress {
+export class GrizzlyExpress {
   private endpoints: Array<string> = [];
   protected app: any;
-  protected settings: PandaExpressSettings = {
+  protected settings: GrizzlyExpressSettings = {
     express: {
       port: process.env.PORT || 5000,
       cors: {
@@ -22,7 +22,7 @@ export class PandaExpress {
     }
   };
 
-  constructor(props: PandaExpressProps) {
+  constructor(props: GrizzlyExpressProps) {
     this.app = express();
     // @TODO implement a deep merge of the settings.
     // Currently, once a level of settings is specified in the

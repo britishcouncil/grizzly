@@ -1,4 +1,4 @@
-const { PandaGraphQL, PandaExpress } = require("../../dist");
+const { GrizzlyGraphQL, GrizzlyExpress } = require("../../dist");
 const { gql } = require("apollo-server-express");
 
 // This is a (sample) collection of books we'll be able to query
@@ -42,10 +42,10 @@ const resolvers = {
 };
 
 // Create a GraphQL service for Books.
-const service = new PandaGraphQL({ typeDefs, resolvers });
+const service = new GrizzlyGraphQL({ typeDefs, resolvers });
 
 // Create an Express app exposing the Books GraphQL service.
-const app = new PandaExpress({ graphqlServices: [service] });
+const app = new GrizzlyExpress({ graphqlServices: [service] });
 
 // Launch the server.
 app.start();
