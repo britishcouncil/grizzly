@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/britishcouncil/grizzly/master/.rsrc/bear.svg" width="80" /></p>
+<p align="center"><img src="https://raw.githubusercontent.com/britishcouncil/grizzly/master/.rsrc/bear.ico" width="80" /></p>
 
 # @britishcouncil/grizzly
 
