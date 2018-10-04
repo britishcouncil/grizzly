@@ -2,7 +2,7 @@ import { CookieOptions } from "express-serve-static-core";
 import { CorsOptions } from "cors";
 import { Store } from "express-session";
 import { Authenticator } from "passport";
-import { GrizzlyGraphQL } from "./grizzly-graphql";
+import { ServerRegistration } from "apollo-server-express";
 
 /**
  * Session options.
@@ -19,6 +19,21 @@ interface ExpressOptions {
   port?: string | number;
   cors?: CorsOptions;
   session?: SessionOptions;
+}
+
+/**
+ * General interace for GraphQL servers.
+ */
+export interface GrizzlyGraphQLServer {
+  endpoint?: string;
+  applyMiddleware({
+    app,
+    path,
+    cors,
+    bodyParserConfig,
+    disableHealthCheck,
+    onHealthCheck
+  }: ServerRegistration): void;
 }
 
 /**
@@ -40,7 +55,7 @@ export interface ExpressMiddleware {
  * Grizzly Express initialisation options.
  */
 export interface GrizzlyExpressProps {
-  graphqlServices: Array<GrizzlyGraphQL>;
+  graphqlServices: Array<GrizzlyGraphQLServer>;
   sessionStore?: Store;
   passport?: Authenticator;
   expressMiddlewares?: Array<ExpressMiddleware>;
