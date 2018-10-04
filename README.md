@@ -76,10 +76,10 @@ The `options` argument accepts all the parameters as the `options` argument by [
 
 The `options` argument accepts all the parameters as the `options` argument by [postgraphile()](https://www.graphile.org/postgraphile/usage-library/) (see also [`PostGrpahileOptions` interface](https://github.com/graphile/postgraphile/blob/master/src/interfaces.ts#L32)), but it also merges into it the other two parameters of the `postgraphile()` function:
 
-| **Key**      | **Type**                     | **Default** | **Notes**                                            |
-| ------------ | ---------------------------- | ----------- | ---------------------------------------------------- |
-| `pgConfig`   | `Pool | PoolConfig | string` | `null`      | PostgreSQL connection string or object.              |
-| `schemaName` | `string | Array<string>;`    | `"public"`  | PostgreSQL schema(s) you to expose via PostGraphile. |
+| **Key**      | **Type**                           | **Default** | **Notes**                                            |
+| ------------ | ---------------------------------- | ----------- | ---------------------------------------------------- |
+| `pgConfig`   | `Pool` or `PoolConfig` or `string` | `null`      | PostgreSQL connection string or object.              |
+| `schemaName` | `string` or `Array<string>`        | `"public"`  | PostgreSQL schema(s) you to expose via PostGraphile. |
 
 ### Types
 
