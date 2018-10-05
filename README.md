@@ -2,15 +2,16 @@
 
 # @britishcouncil/grizzly
 
-Slightly opinionated GraphQL server solution built on [Apollo Server 2.0](https://github.com/apollographql/apollo-server) and [Express](https://github.com/expressjs/express).
+Slightly opinionated GraphQL server solution built on [Apollo Server](https://github.com/apollographql/apollo-server), [PostGraphile](https://www.graphile.org/postgraphile) and [Express](https://github.com/expressjs/express).
 
 ## Overview
 
-- All the features of Apollo Server 2.0
-- Support for [graphql-middleware](https://github.com/prisma/graphql-middleware)
-- Support for [graphql-shield](https://github.com/maticzav/graphql-shield)
-- Support for loading schemas from SDL files via [grapqhl-import](https://github.com/prisma/graphql-import)
-- Create multiple GraphQL services (i.e. Apollo services) over a single Express application
+- All the features of the latest Apollo Server, plus
+  - Support for [graphql-middleware](https://github.com/prisma/graphql-middleware)
+  - Support for [graphql-shield](https://github.com/maticzav/graphql-shield)
+  - Support for loading schemas from SDL files via [grapqhl-import](https://github.com/prisma/graphql-import)
+- All the features of the latest PostGraphile
+- Create multiple GraphQL services (i.e. Apollo or PostGraphile services) over a single Express application
 
 ## Install
 
