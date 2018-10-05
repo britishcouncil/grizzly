@@ -103,6 +103,21 @@ interface ExpressOptions {
 }
 
 /**
+ * General interace for GraphQL servers.
+ */
+export interface GrizzlyGraphQLServer {
+  endpoint?: string;
+  applyMiddleware({
+    app,
+    path,
+    cors,
+    bodyParserConfig,
+    disableHealthCheck,
+    onHealthCheck
+  }: ServerRegistration): void;
+}
+
+/**
  * Grizzly Express Settings.
  */
 export interface GrizzlyExpressSettings {
@@ -121,7 +136,7 @@ export interface ExpressMiddleware {
  * Grizzly Express initialisation options.
  */
 export interface GrizzlyExpressProps {
-  graphqlServices: Array<GrizzlyApollo>;
+  graphqlServices: Array<GrizzlyGraphQLServer>;
   sessionStore?: Store;
   passport?: Authenticator;
   expressMiddlewares?: Array<ExpressMiddleware>;
