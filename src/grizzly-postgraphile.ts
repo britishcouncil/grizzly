@@ -16,6 +16,7 @@ export class GrizzlyPostGraphile implements GrizzlyGraphQLServer {
   private options: PostGraphileOptions;
   constructor(options: GrizzlyPostGraphileOptions) {
     this.options = options || {};
+    this.options.schemaName = this.options.schemaName || "public";
     this.endpoint = (this.options && this.options.graphqlRoute) || "/graphql";
   }
   public applyMiddleware(options: ServerRegistration) {
