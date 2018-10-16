@@ -30,7 +30,6 @@
     "apollo-server-express": "^2.0.6",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "graphql": "^0.13.2",
     "graphql-import": "^0.6.0",
     "graphql-middleware": "^1.6.6",
     "graphql-shield": "^3.2.1",
@@ -47,5 +46,8 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.0",
     "typescript": "^3.0.3"
+  },
+  "peerDependencies": {
+    "graphql": "^0.12.0 || ^0.13.0 || ^14.0.0"
   }
 }
