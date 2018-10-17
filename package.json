@@ -1,7 +1,7 @@
 {
   "name": "@britishcouncil/grizzly",
-  "version": "0.1.0",
-  "description": "Slightly opinionated GraphQL server solution built on Apollo Server 2.0 and Express.",
+  "version": "0.2.0",
+  "description": "Slightly opinionated GraphQL server solution.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
