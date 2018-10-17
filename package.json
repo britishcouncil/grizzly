@@ -1,7 +1,7 @@
 {
   "name": "@britishcouncil/grizzly",
-  "version": "0.1.0",
-  "description": "Slightly opinionated GraphQL server solution built on Apollo Server 2.0 and Express.",
+  "version": "0.2.0",
+  "description": "Slightly opinionated GraphQL server solution.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "files": [
@@ -30,11 +30,11 @@
     "apollo-server-express": "^2.0.6",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
-    "graphql": "^0.13.2",
     "graphql-import": "^0.6.0",
     "graphql-middleware": "^1.6.6",
     "graphql-shield": "^3.2.1",
-    "passport": "^0.4.0"
+    "passport": "^0.4.0",
+    "postgraphile": "^4.0.0"
   },
   "devDependencies": {
     "@types/express-session": "^1.15.10",
@@ -46,5 +46,8 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-config-standard": "^8.0.0",
     "typescript": "^3.0.3"
+  },
+  "peerDependencies": {
+    "graphql": "^0.12.0 || ^0.13.0 || ^14.0.0"
   }
 }

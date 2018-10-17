@@ -6,7 +6,7 @@ import { GrizzlyExpressProps, GrizzlyExpressSettings } from "./types";
  * Wrapper around Express to build a "many Apollo Servers over One Express app" model.
  */
 export class GrizzlyExpress {
-  private endpoints: Array<string> = [];
+  private spawnedServers: Array<{ endpoint: string; name: string }> = [];
   protected app: any;
   protected settings: GrizzlyExpressSettings = {
     express: {
@@ -61,14 +61,18 @@ export class GrizzlyExpress {
       });
     }
 
-    // Register apollo servers with the express app.
+    // Register GraphQL servers with the express app.
     props.graphqlServices.forEach(s => {
+      // Apollo servers.
       s.applyMiddleware({
         app: this.app,
         path: s.endpoint,
         cors: this.settings.express.cors
       });
-      this.endpoints.push(s.endpoint);
+      this.spawnedServers.push({
+        endpoint: s.endpoint,
+        name: s.constructor.name.replace("Grizzly", "")
+      });
     });
   }
 
@@ -76,8 +80,12 @@ export class GrizzlyExpress {
     // Fire it up!
     return this.app.listen({ port: this.settings.express.port }, () => {
       console.log("> 🐻 is alive and kicking at:");
-      this.endpoints.forEach(e => {
-        console.log(`>> http://localhost:${this.settings.express.port}${e}`);
+      this.spawnedServers.forEach(ss => {
+        console.log(
+          `>> http://localhost:${this.settings.express.port}${ss.endpoint} (${
+            ss.name
+          })`
+        );
       });
     });
   };

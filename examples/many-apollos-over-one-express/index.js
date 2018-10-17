@@ -1,4 +1,4 @@
-const { GrizzlyGraphQL, GrizzlyExpress } = require("../../dist");
+const { GrizzlyApollo, GrizzlyExpress } = require("../../dist");
 const { gql } = require("apollo-server-express");
 
 // This is a (sample) collection of books we'll be able to query
@@ -43,7 +43,7 @@ const bookResolvers = {
 };
 
 // Create a GraphQL service for the Books service.
-const bookServer = new GrizzlyGraphQL({
+const bookServer = new GrizzlyApollo({
   typeDefs: booksTypeDefs,
   resolvers: bookResolvers,
   endpoint: "/books"
@@ -79,14 +79,16 @@ const filmResolvers = {
   }
 };
 
-const filmServer = new GrizzlyGraphQL({
+const filmServer = new GrizzlyApollo({
   typeDefs: filmsTypeDefs,
   resolvers: filmResolvers,
   endpoint: "/films"
 });
 
 // Create a new Express app serving both GraphQL services.
-const app = new GrizzlyExpress({ graphqlServices: [bookServer, filmServer] });
+const app = new GrizzlyExpress({
+  graphqlServices: [bookServer, filmServer]
+});
 
 // Launch the server.
 app.start();

@@ -3,11 +3,12 @@ import { importSchema } from "graphql-import";
 import { formatError } from "apollo-errors";
 import { applyMiddleware } from "graphql-middleware";
 import { Config as ApolloConfig } from "apollo-server-core";
+import { GrizzlyGraphQLServer } from "./types";
 
 /**
  * Extends ApolloServer Config.
  */
-export interface GrizzlyGraphQLConfig extends ApolloConfig {
+export interface GrizzlyApolloConfig extends ApolloConfig {
   schemaFile?: string;
   endpoint?: string;
   middlewares?: Array<any>;
@@ -21,10 +22,11 @@ export interface GrizzlyGraphQLConfig extends ApolloConfig {
  *  - to load the schema from an SDL file
  *  - to apply graphql-middleware(s) to the schema
  */
-export class GrizzlyGraphQL extends ApolloServer {
+export class GrizzlyApollo extends ApolloServer
+  implements GrizzlyGraphQLServer {
   public endpoint: string;
 
-  constructor(options: GrizzlyGraphQLConfig) {
+  constructor(options: GrizzlyApolloConfig) {
     let path = require("path");
     let fs = require("fs");
 

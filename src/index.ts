@@ -1,2 +1,6 @@
 export { GrizzlyExpress } from "./grizzly-express";
-export { GrizzlyGraphQL, GrizzlyGraphQLConfig } from "./grizzly-graphql";
+export { GrizzlyApollo, GrizzlyApolloConfig } from "./grizzly-apollo";
+export {
+  GrizzlyPostGraphile,
+  GrizzlyPostGraphileOptions
+} from "./grizzly-postgraphile";
