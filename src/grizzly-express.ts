@@ -75,7 +75,7 @@ export class GrizzlyExpress {
   public start = () => {
     // Fire it up!
     return this.app.listen({ port: this.settings.express.port }, () => {
-      console.log("> 🐼 is alive and kicking at:");
+      console.log("> 🐻 is alive and kicking at:");
       this.endpoints.forEach(e => {
         console.log(`>> http://localhost:${this.settings.express.port}${e}`);
       });
