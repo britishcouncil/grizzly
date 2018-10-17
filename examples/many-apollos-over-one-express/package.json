@@ -6,7 +6,7 @@
   "author": "Vincenzo Russo <v@artetecha.com> (https://www.artetecha.com)",
   "license": "MIT",
   "scripts": {
-    "install": "yarn --cwd=../../ build",
+    "preinstall": "yarn --cwd=../../ build",
     "start": "node ."
   },
   "dependencies": {}
