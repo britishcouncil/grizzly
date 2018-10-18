@@ -9,7 +9,7 @@ Slightly opinionated GraphQL server solution built on [Apollo Server](https://gi
 - All the features of the latest Apollo Server, plus
   - Support for [graphql-middleware](https://github.com/prisma/graphql-middleware)
   - Support for [graphql-shield](https://github.com/maticzav/graphql-shield)
-  - Support for loading schemas from SDL files via [grapqhl-import](https://github.com/prisma/graphql-import)
+  - Support for loading schemas from SDL files via [graphql-import](https://github.com/prisma/graphql-import)
 - All the features of the latest PostGraphile
 - Create multiple GraphQL services (i.e. Apollo or PostGraphile services) over a single Express application
 
@@ -33,13 +33,13 @@ yarn add @britishcouncil/grizzly # npm install @britishcouncil/grizzly
 
 The `props` argument accepts the following fields:
 
-| **Key**              | **Type**                     | **Default** | **Notes**                                                                                                                                                                                  |
-| -------------------- | ---------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `graphqlServices`    | Array of `GrizzlyApollo`     | `null`      | See `GrizzlyApollo` documentation below for more details about this type                                                                                                                   |
-| `sessionStore`       | `Store`                      | `null`      | An instance of a session storage for Express server.                                                                                                                                       |
-| `passport`           | `Authenticator`              | `null`      | An instance of a `passport` authenticator.                                                                                                                                                 |
-| `expressMiddlewares` | Array of `ExpressMiddleware` | `null`      | Each `ExpressMiddleware` can have a `path` (optional) and a `function`, e.g. `{ path: "/hello-world", function: () => "Hello world!" }` or `{ function: () => console.log("Everything") }` |
-| `settings`           | `GrizzlyExpressSettings`     | See below   |                                                                                                                                                                                            |
+| **Key**              | **Type**                        | **Default** | **Notes**                                                                                                                                                                                  |
+| -------------------- | ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `graphqlServices`    | Array of `GrizzlyGraphQLServer` | `null`      | See `GrizzlyGraphQLServer` documentation below for more details about this type                                                                                                            |
+| `sessionStore`       | `Store`                         | `null`      | An instance of a session storage for Express server.                                                                                                                                       |
+| `passport`           | `Authenticator`                 | `null`      | An instance of a `passport` authenticator.                                                                                                                                                 |
+| `expressMiddlewares` | Array of `ExpressMiddleware`    | `null`      | Each `ExpressMiddleware` can have a `path` (optional) and a `function`, e.g. `{ path: "/hello-world", function: () => "Hello world!" }` or `{ function: () => console.log("Everything") }` |
+| `settings`           | `GrizzlyExpressSettings`        | See below   |                                                                                                                                                                                            |
 
 Default GrizzlyExpress settings:
 
