@@ -23,7 +23,7 @@ yarn add @britishcouncil/grizzly # npm install @britishcouncil/grizzly
 
 ### Quickstart
 
-> To get started with `@britishcouncil/grizzly`, follow the instructions in the READMEs of the [examples](./examples).
+To get started with `@britishcouncil/grizzly`, have a look at the [examples](./examples).
 
 ### API
 
