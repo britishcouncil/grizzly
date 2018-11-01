@@ -4,3 +4,5 @@ export {
   GrizzlyPostGraphile,
   GrizzlyPostGraphileOptions
 } from "./grizzly-postgraphile";
+export { gql } from "apollo-server-express";
+export {importSchema} from "graphql-import";
