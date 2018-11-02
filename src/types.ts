@@ -17,6 +17,7 @@ interface SessionOptions {
  */
 interface ExpressOptions {
   port?: string | number;
+  address?: string,
   cors?: CorsOptions;
   session?: SessionOptions;
 }

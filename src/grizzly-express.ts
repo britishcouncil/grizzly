@@ -76,13 +76,14 @@ export class GrizzlyExpress {
     });
   }
 
-  public start = () => {
+  public start = (address: string) => {
     // Fire it up!
-    return this.app.listen({ port: this.settings.express.port }, () => {
+    const addr = address || this.settings.express.address || "localhost";
+    return this.app.listen(this.settings.express.port, addr, () => {
       console.log("> 🐻 is alive and kicking at:");
       this.spawnedServers.forEach(ss => {
         console.log(
-          `>> http://localhost:${this.settings.express.port}${ss.endpoint} (${
+          `>> http://${addr}:${this.settings.express.port}${ss.endpoint} (${
             ss.name
           })`
         );
