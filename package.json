@@ -1,6 +1,6 @@
 {
   "name": "@britishcouncil/grizzly",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "description": "Slightly opinionated GraphQL server solution.",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
