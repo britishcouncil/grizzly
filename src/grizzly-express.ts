@@ -11,10 +11,10 @@ export class GrizzlyExpress {
   private graphqlServicesNames: Array<{ endpoint: string; name: string }> = [];
   // The Express app.
   protected app: any;
-  // Port.
+  // Server Port.
   protected port: string | number = process.env.PORT || 5000;
-  // Binding address.
-  protected address: string = "localhost";
+  // Server Host.
+  protected host: string;
   // Cors options.
   protected cors: CorsOptions;
   // Session options.
@@ -30,7 +30,7 @@ export class GrizzlyExpress {
 
     // Merge defaults with props coming in.
     this.port = props.port || this.port;
-    this.address = props.address || this.address;
+    this.host = props.host || this.host;
     this.session = { ...this.session, ...props.session };
     this.cors = props.cors;
     this.bodyParser = props.bodyParser;
@@ -85,13 +85,17 @@ export class GrizzlyExpress {
 
   public start = () => {
     // Fire it up!
-    return this.app.listen(this.port, this.address, () => {
+    const server = this.app.listen(this.port, this.host, () => {
       console.log("> 🐻 is alive and kicking at:");
       this.graphqlServicesNames.forEach(ss => {
+        // https://nodejs.org/api/net.html#net_server_listen
         console.log(
-          `>> http://${this.address}:${this.port}${ss.endpoint} (${ss.name})`
+          `>> http://${server.address().address}:${server.address().port}${
+            ss.endpoint
+          } (${ss.name})`
         );
       });
     });
+    return server;
   };
 }

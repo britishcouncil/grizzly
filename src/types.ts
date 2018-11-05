@@ -44,7 +44,7 @@ export interface GrizzlyExpressProps {
   passport?: Authenticator;
   middlewares?: Array<ExpressMiddleware>;
   port?: string | number;
-  address?: string;
+  host?: string;
   cors?: CorsOptions;
   session?: SessionOptions;
   bodyParser?: Object | boolean;
