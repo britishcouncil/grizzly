@@ -1,42 +1,46 @@
 import * as express from "express";
 import * as session from "express-session";
-import { GrizzlyExpressProps, GrizzlyExpressSettings } from "./types";
+import { GrizzlyExpressProps, SessionOptions } from "./types";
+import { CorsOptions } from "cors";
 
 /**
  * Wrapper around Express to build a "many Apollo Servers over One Express app" model.
  */
 export class GrizzlyExpress {
-  private spawnedServers: Array<{ endpoint: string; name: string }> = [];
+  // Names of the GraphQL servers added here.
+  private graphqlServicesNames: Array<{ endpoint: string; name: string }> = [];
+  // The Express app.
   protected app: any;
-  protected settings: GrizzlyExpressSettings = {
-    express: {
-      port: process.env.PORT || 5000,
-      cors: {
-        origin: [/https?:\/\/.*/],
-        credentials: true
-      },
-      session: {
-        secret: process.env.SESSION_SECRET,
-        cookie: { maxAge: 10800000 } // 10800000ms = 3h.
-      }
-    }
+  // Port.
+  protected port: string | number = process.env.PORT || 5000;
+  // Binding address.
+  protected address: string = "localhost";
+  // Cors options.
+  protected cors: CorsOptions;
+  // Session options.
+  protected session: SessionOptions = {
+    secret: process.env.SESSION_SECRET,
+    cookie: { maxAge: 3600000 } // 3600000ms = 1h.
   };
+  // BodyParser configuration.
+  protected bodyParser: Object | boolean = false;
 
   constructor(props: GrizzlyExpressProps) {
     this.app = express();
-    // @TODO implement a deep merge of the settings.
-    // Currently, once a level of settings is specified in the
-    // constructor, all the nested properties that may have had
-    // a default value are nullified, thus the required ones must
-    // all be provided.
-    this.settings = { ...this.settings, ...props.settings };
 
-    // Set up a session in Express.
+    // Merge defaults with props coming in.
+    this.port = props.port || this.port;
+    this.address = props.address || this.address;
+    this.session = { ...this.session, ...props.session };
+    this.cors = props.cors;
+    this.bodyParser = props.bodyParser;
+
+    // Set up a session in Express, if required.
     if (props.sessionStore) {
       this.app.use(
         session({
-          secret: this.settings.express.session.secret,
-          cookie: this.settings.express.session.cookie,
+          secret: this.session.secret,
+          cookie: this.session.cookie,
           saveUninitialized: true,
           resave: true,
           store: props.sessionStore
@@ -51,8 +55,8 @@ export class GrizzlyExpress {
     }
 
     // Additional middlewares to add to Express.
-    if (props.expressMiddlewares) {
-      props.expressMiddlewares.forEach(em => {
+    if (props.middlewares) {
+      props.middlewares.forEach(em => {
         if (em.path == null) {
           this.app.use(em.function);
         } else {
@@ -63,29 +67,29 @@ export class GrizzlyExpress {
 
     // Register GraphQL servers with the express app.
     props.graphqlServices.forEach(s => {
-      // Apollo servers.
+      // GraphQL services (either Apollo or PostGraphile).
       s.applyMiddleware({
         app: this.app,
         path: s.endpoint,
-        cors: this.settings.express.cors
+        cors: this.cors,
+        bodyParserConfig: this.bodyParser
       });
-      this.spawnedServers.push({
+      // Get the name of the service (taken from the constructor
+      // name, and removing "Grizzly" from it.)
+      this.graphqlServicesNames.push({
         endpoint: s.endpoint,
         name: s.constructor.name.replace("Grizzly", "")
       });
     });
   }
 
-  public start = (address: string) => {
+  public start = () => {
     // Fire it up!
-    const addr = address || this.settings.express.address || "localhost";
-    return this.app.listen(this.settings.express.port, addr, () => {
+    return this.app.listen(this.port, this.address, () => {
       console.log("> 🐻 is alive and kicking at:");
-      this.spawnedServers.forEach(ss => {
+      this.graphqlServicesNames.forEach(ss => {
         console.log(
-          `>> http://${addr}:${this.settings.express.port}${ss.endpoint} (${
-            ss.name
-          })`
+          `>> http://${this.address}:${this.port}${ss.endpoint} (${ss.name})`
         );
       });
     });

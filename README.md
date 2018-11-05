@@ -33,31 +33,17 @@ To get started with `@britishcouncil/grizzly`, have a look at the [examples](./e
 
 The `props` argument accepts the following fields:
 
-| **Key**              | **Type**                        | **Default** | **Notes**                                                                                                                                                                                  |
-| -------------------- | ------------------------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `graphqlServices`    | Array of `GrizzlyGraphQLServer` | `null`      | See `GrizzlyGraphQLServer` documentation below for more details about this type                                                                                                            |
-| `sessionStore`       | `Store`                         | `null`      | An instance of a session storage for Express server.                                                                                                                                       |
-| `passport`           | `Authenticator`                 | `null`      | An instance of a `passport` authenticator.                                                                                                                                                 |
-| `expressMiddlewares` | Array of `ExpressMiddleware`    | `null`      | Each `ExpressMiddleware` can have a `path` (optional) and a `function`, e.g. `{ path: "/hello-world", function: () => "Hello world!" }` or `{ function: () => console.log("Everything") }` |
-| `settings`           | `GrizzlyExpressSettings`        | See below   |                                                                                                                                                                                            |
-
-Default GrizzlyExpress settings:
-
-```js
-  protected settings: GrizzlyExpressSettings = {
-    express: {
-      port: process.env.PORT || 5000,
-      cors: {
-        origin: [/https?:\/\/.*/],
-        credentials: true
-      },
-      session: {
-        secret: process.env.SESSION_SECRET,
-        cookie: { maxAge: 10800000 } // 10800000ms = 3h.
-      }
-    }
-  };
-```
+| **Key**           | **Type**                        | **Default**                                                                              | **Notes**                                                                                                                                                                                  |
+| ----------------- | ------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `graphqlServices` | Array of `GrizzlyGraphQLServer` | `null`                                                                                   | See `GrizzlyGraphQLServer` documentation below for more details about this type                                                                                                            |
+| `sessionStore`    | `Store`                         | `null`                                                                                   | An instance of a session storage for Express server.                                                                                                                                       |
+| `passport`        | `Authenticator`                 | `null`                                                                                   | An instance of a `passport` authenticator.                                                                                                                                                 |
+| `middlewares`     | Array of `ExpressMiddleware`    | `null`                                                                                   | Each `ExpressMiddleware` can have a `path` (optional) and a `function`, e.g. `{ path: "/hello-world", function: () => "Hello world!" }` or `{ function: () => console.log("Everything") }` |
+| `port`            | `string` or `number`            | `process.env.PORT` or `5000`                                                             | HTTP server port.                                                                                                                                                                          |
+| `address`         | `string`                        | `localhost`                                                                              | HTTP server binding address.                                                                                                                                                               |
+| `session`         | `SessionOptions`                | `{ secret: process.env.SESSION_SECRET, cookie: { maxAge: 3600000 } // 3600000ms = 1h. }` | Sessions options                                                                                                                                                                           |
+| `cors`            | `CorsOptions`                   | `null`                                                                                   | Cors configuration.                                                                                                                                                                        |
+| `bodyParse`       | `Object` or `boolean`           | `false`                                                                                  | The body-parser options: `false` removes the body parser middleware and `true` uses the defaults                                                                                           |
 
 #### `GrizzlyApollo`
 
@@ -88,18 +74,9 @@ The `options` argument accepts all the parameters as the `options` argument by [
 /**
  * Session options.
  */
-interface SessionOptions {
+export interface SessionOptions {
   secret?: string;
   cookie?: CookieOptions;
-}
-
-/**
- * Express options.
- */
-interface ExpressOptions {
-  port?: string | number;
-  cors?: CorsOptions;
-  session?: SessionOptions;
 }
 
 /**
@@ -118,13 +95,6 @@ export interface GrizzlyGraphQLServer {
 }
 
 /**
- * Grizzly Express Settings.
- */
-export interface GrizzlyExpressSettings {
-  express?: ExpressOptions;
-}
-
-/**
  * Type for express middlewares. Path is optional.
  */
 export interface ExpressMiddleware {
@@ -139,8 +109,12 @@ export interface GrizzlyExpressProps {
   graphqlServices: Array<GrizzlyGraphQLServer>;
   sessionStore?: Store;
   passport?: Authenticator;
-  expressMiddlewares?: Array<ExpressMiddleware>;
-  settings?: GrizzlyExpressSettings;
+  middlewares?: Array<ExpressMiddleware>;
+  port?: string | number;
+  address?: string;
+  cors?: CorsOptions;
+  session?: SessionOptions;
+  bodyParser?: Object | boolean;
 }
 
 /**

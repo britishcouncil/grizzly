@@ -7,19 +7,9 @@ import { ServerRegistration } from "apollo-server-express";
 /**
  * Session options.
  */
-interface SessionOptions {
+export interface SessionOptions {
   secret?: string;
   cookie?: CookieOptions;
-}
-
-/**
- * Express options.
- */
-interface ExpressOptions {
-  port?: string | number;
-  address?: string,
-  cors?: CorsOptions;
-  session?: SessionOptions;
 }
 
 /**
@@ -38,13 +28,6 @@ export interface GrizzlyGraphQLServer {
 }
 
 /**
- * Grizzly Express Settings.
- */
-export interface GrizzlyExpressSettings {
-  express?: ExpressOptions;
-}
-
-/**
  * Type for express middlewares. Path is optional.
  */
 export interface ExpressMiddleware {
@@ -59,6 +42,10 @@ export interface GrizzlyExpressProps {
   graphqlServices: Array<GrizzlyGraphQLServer>;
   sessionStore?: Store;
   passport?: Authenticator;
-  expressMiddlewares?: Array<ExpressMiddleware>;
-  settings?: GrizzlyExpressSettings;
+  middlewares?: Array<ExpressMiddleware>;
+  port?: string | number;
+  address?: string;
+  cors?: CorsOptions;
+  session?: SessionOptions;
+  bodyParser?: Object | boolean;
 }
